@@ -1,0 +1,178 @@
+‘Clayton Ousley'
+                                                                   				 'CALCULATOR MAX 1.2'
+Option Explicit                            
+
+Private Sub cmdClearValues_Click()    'This will clear all selections'
+    cboSelectEntry.Text = "SELECT ENTRY"
+    cboSelectOperation.Text = "SELECT OPERATION"
+    txtAnswerBox.Text = ""
+    lblAnswerBox.Caption = ""
+    txtEntryBox.Text = ""
+    txtMemoryForValueOne.Text = ""
+    txtOperationType.Text = ""
+    txtMemoryForValueTwo.Text = ""
+    txtOperationPhrase.Text = ""
+End Sub
+
+Private Sub cmdCompute_Click()  'This will compute and display answer and process in computer memory area'
+    If cboSelectOperation.Text = "MULTIPLICATION" Then
+    txtAnswerBox.Text = Val(Val(txtMemoryForValueOne.Text) * Val(txtMemoryForValueTwo))
+    txtOperationPhrase.Text = "Val(Val(txtMemoryForValueOne.Text) * Val(txtMemoryForValueTwo))"
+    lblAnswerBox.Caption = "PRODUCT"
+    Else
+    End If
+    If cboSelectOperation.Text = "DIVISION" Then
+    txtAnswerBox.Text = Val(Val(txtMemoryForValueOne.Text) / Val(txtMemoryForValueTwo.Text))
+    txtOperationPhrase.Text = "Val(Val(txtMemoryForValueOne.Text) / Val(txtMemoryForValueTwo.Text))"
+    lblAnswerBox.Caption = "QUOTIENT"
+    Else
+    End If
+    If cboSelectOperation.Text = "ADDITION" Then
+    txtAnswerBox.Text = Val(Val(txtMemoryForValueOne.Text) + Val(txtMemoryForValueTwo.Text))
+    txtOperationPhrase.Text = "Val(Val(txtMemoryForValueOne.Text) + Val(txtMemoryForValueTwo.Text))"
+    lblAnswerBox.Caption = "SUM"
+    Else
+    End If
+    If cboSelectOperation.Text = "SUBTRACTION" Then
+    txtAnswerBox.Text = Val(Val(txtMemoryForValueOne.Text) - Val(txtMemoryForValueTwo.Text))
+    txtOperationPhrase.Text = "Val(Val(txtMemoryForValueOne.Text) - Val(txtMemoryForValueTwo.Text))"
+    lblAnswerBox.Caption = "DIFFERENCE"
+    Else
+    End If
+    If cboSelectOperation.Text = "SQUARE ROOT" Then
+    txtAnswerBox.Text = Val(Val(txtMemoryForValueOne.Text) ^ Val(1 / 2))
+    txtOperationPhrase.Text = "Val(Val(txtMemoryForValueOne.Text) ^ Val(1 / 2))"
+    txtMemoryForValueTwo.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    lblAnswerBox.Caption = "SQUARE ROOT"
+    Else
+    End If
+    
+End Sub
+
+Private Sub cmdHideMemory_Click()   'This will hide all memory and calculation areas'
+    lblComputerMemoryArea.Visible = False
+    lblMemoryForValueOne.Visible = False
+    lblOperationType.Visible = False
+    lblMemoryForValueTwo.Visible = False
+    txtMemoryForValueOne.Visible = False
+    txtOperationType.Visible = False
+    txtMemoryForValueTwo.Visible = False
+    lblOperationPhrase.Visible = False
+    txtOperationPhrase.Visible = False
+    lblUserMemory.Visible = False
+    lblUserMemoryArea.Visible = False
+    txtUserMemory.Visible = False
+    cmdShowMemoryOperation.Visible = True
+    
+End Sub
+
+Private Sub cmdSelectEntry_Click() 'This will input typed value as selected entry'
+    If IsNumeric(txtEntryBox.Text) = False Then
+    MsgBox "TYPE ONLY NUMBERS IN THE ENTRY BOX", 16, "VALUE ERROR"
+    txtEntryBox.Text = ""
+    txtEntryBox.SetFocus
+    Else
+    End If
+    
+    If cboSelectEntry.Text = "SELECT FOR VALUE ONE" Then
+    txtMemoryForValueOne.Text = txtEntryBox.Text
+    txtEntryBox.Text = ""
+    txtEntryBox.SetFocus
+    Else
+    End If
+    If cboSelectEntry.Text = "SELECT FOR VALUE TWO" Then
+    txtMemoryForValueTwo.Text = txtEntryBox.Text
+    txtEntryBox.Text = ""
+    txtEntryBox.SetFocus
+    Else
+    End If
+    
+End Sub
+
+Private Sub cmdSelectMemoryOperation_Click()    'This will select and execute the selected memory operation'
+    If cboSelectMemoryOperation.Text = "M PLUS" Then
+    txtUserMemory.Text = txtEntryBox.Text
+    txtAnswerBox.Text = ""
+    Else
+    End If
+    
+    If cboSelectMemoryOperation.Text = "M CLEAR" Then
+    txtUserMemory.Text = ""
+    Else
+    End If
+    
+    If cboSelectMemoryOperation.Text = "M RECALL" Then
+    txtEntryBox.Text = txtUserMemory.Text
+    Else
+    End If
+      
+End Sub
+
+Private Sub cmdSelectOperation_Click()  'This will select Mathematical operations to be carried out during calculation and input them into the memory to be calculated'
+    If cboSelectOperation.Text = "MULTIPLICATION" Then
+    txtOperationType.Text = "TIMES"
+    Else
+    End If
+    If cboSelectOperation.Text = "DIVISION" Then
+    txtOperationType.Text = "DIVIDED BY"
+    Else
+    End If
+    If cboSelectOperation.Text = "ADDITION" Then
+    txtOperationType.Text = "PLUS"
+    Else
+    End If
+    If cboSelectOperation.Text = "SUBTRACTION" Then
+    txtOperationType.Text = "MINUS"
+    Else
+    End If
+    If cboSelectOperation.Text = "SQUARE ROOT" Then
+    txtOperationType.Text = "SQUARE ROOT"
+    txtMemoryForValueTwo.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    Else
+    End If
+    
+End Sub
+
+
+Private Sub cmdShowMemoryOperation_Click()  'This will show all memory and operation areas'
+    lblComputerMemoryArea.Visible = True
+    lblMemoryForValueOne.Visible = True
+    lblOperationType.Visible = True
+    lblMemoryForValueTwo.Visible = True
+    txtMemoryForValueOne.Visible = True
+    txtOperationType.Visible = True
+    txtMemoryForValueTwo.Visible = True
+    lblOperationPhrase.Visible = True
+    txtOperationPhrase.Visible = True
+    lblUserMemory.Visible = True
+    lblUserMemoryArea.Visible = True
+    txtUserMemory.Visible = True
+    cmdShowMemoryOperation.Visible = False
+
+End Sub
+
+Private Sub Form_Load() 'This will load the Introductory MsgBox when the Program Loads'
+    MsgBox "THIS PROGRAM WAS DESIGNED, CODED, AND PRODUCED BY CLAYTON OUSLEY, AND THUS HAS CLAIMED ALL CREDIT FOR IT. ALL RIGHTS TO THIS PROGRAM ARE PROPERTIES OF THE AUTHOR. YOU MAY USE IT ONLY ON THE CIRCUMSTANCES THAT YOU DO NOT COPY OR TAKE CREDIT, WHETHER IN PART OR WHOLE, INTO THE CREATION OF THIS PROGRAM. IF YOU AGREE TO THESE TERMS, AND WISH TO CONTINUE, CLICK OK.", 16, "USER PERMIT"
+    
+End Sub
+
+Private Sub mnuFileExit_Click() 'This will terminatate the Program'
+    End
+End Sub
+
+Private Sub mnuFileHelp_Click() 'This will display the help msgBoxes'
+    MsgBox "Start by entering the first value into the ENTRY BOX", 64, "HELP"
+    MsgBox "Then, by scrolling down the SELECT ENTRY combo box, select it as either VALUE ONE or VALUE TWO, depending where you want the number to be in the problem, then click the SELECT BUTTON next to it" ' 64, "HELP"
+    MsgBox "When you are finished selecting your value(s), select the math operation that you will be using by selecting it in the SELECT OPERATION box. Select it, then click on the adjacent SELECT BUTTON.", 64, "HELP"
+    MsgBox "When finished, click on the COMPUTE!! button, and your answer will then be displayed.", 64, "HELP"
+    MsgBox "This program also has memory. Some can only be used by the computer, some can only be used by you.", 64, "HELP"
+    MsgBox "The memory used by the computer is displayed under the lable: COMPUTER MEMORY AND CALCULATION AREA. The memory that can be used by you, the USER, is labeled under USER MEMORY.", 64, "HELP"
+    MsgBox "You can store numbers into the USER MEMORY by typing in the values you wish to take note of into the ENTRY BOX, then select M PLUS from the SELECT MEMORY OPERATION box, and then store it by clicking the SELECT button.", 64, "HELP"
+    MsgBox "When you are ready to use the remembered value again, you select M RECALL in the SELECT MEMORY OPERATION box, and then clicking SELECT. This will automatically input the value into the ENTRY BOX for you.", 64, "HELP"
+    MsgBox "To clear USER MEMORY, select M CLEAR in the SELECT MEMORY OPERATION, and click SELECT", 64, "HELP"
+    MsgBox "To clear all entries that are in the COMPUTER MEMORY AND CALCULATION AREA and ENTRY AREA, click on CLEAR ABOVE SELECTIONS", 64, "HELP"
+    MsgBox "To hide all memory, click on HIDE MEMORY AND CALCULATION AREA. This is not recommended.", 64, "HELP"
+    MsgBox "To show computer memory after it was hidden, select SHOW COMPUTER MEMORY AND CALCULATION AREA.", 64, "HELP"
+    
+End Sub
+
